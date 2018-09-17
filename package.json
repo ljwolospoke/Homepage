@@ -1,0 +1,14 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "homepage newest",
+  "main": "homepage.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lance",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
