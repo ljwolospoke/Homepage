@@ -1,7 +1,15 @@
 var express = require('express');
+var fortune = require("./fortune");
 
 var app = express();
 
+var fortunes = [
+        "conquer your fears or they will conquer you.",
+        "River need springs.",
+        "Do not fear what you don't know.",
+        "you will have a pleasant suprise.",
+        "whenever possible, keep it simple.",
+];
 // set up handlebars
 var handlebars = require('express-handlebars')
 	.create({ defaultLayout:'main' });
@@ -16,6 +24,8 @@ app.use(function(req, res, next){
 	next();
 });
 
+app.use(express.static(__dirname + "/public"));
+
 app.get('/', function(req, res){
 	res.render('home');
 });
@@ -25,12 +35,19 @@ app.get('/game', function(req, res){
 });
 
 app.get('/about', function(req, res){
-	res.render('about', {
-		pageTestScript: '/qa/tests-about.js'
-	});
+	res.render("about", { fortune: fortune.getFortune(),
+         pageTestScript: '/qa/tests-about.js' });
+	//res.render('about', {
+	//	pageTestScript: '/qa/tests-about.js'
 });
 
-app.use(express.static(__dirname + "/public"));
+//cross testing
+app.get('/tours/hood-river', function(req, res){
+	res.render('tours/hood-river');
+});
+app.get('/tours/request-group-rate', function(req, res){
+	res.render('tours/request-group-rate');
+});
 
 // 404 page
 app.use(function(req, res, next){
