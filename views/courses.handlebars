@@ -1,0 +1,10 @@
+<ul>
+	{{#each courses}}
+		<li>
+			{{course}} - {{code}} - {{credits}} - {{instructor}}
+			{{#if ../info}}
+				({{../info.abbrev}})
+			{{/if}}		
+		</li>
+	{{/each}}
+</ul>

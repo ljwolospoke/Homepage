@@ -49,6 +49,27 @@ app.get('/tours/request-group-rate', function(req, res){
 	res.render('tours/request-group-rate');
 });
 
+app.get('/courses', function(req, res){
+	res.render('courses', {
+	info: {
+		course: '',
+		code: '',
+		credits: '3',
+		instructor: '',
+	},
+	courses: [
+		{ course: 'Business Law', code: 'BMGT 201 D B', credits: '3.00', instructor: 'Peter Taylor' },
+		{ course: 'Principles of Management', code: 'BMGT 208 D C', credits: '3.00', instructor: 'Soren Hogsgaard' },
+		{ course: 'Web Application Development', code: 'CMPS 361 E A', credits: '3.00', instructor: 'Mark Voortman' },
+		{ course: 'Honors Astronomy', code: 'CMPS 361 E A', credits: '3.00', instructor: 'Brendan Mullan' },
+		{ course: 'Japanese Culture', code: 'SOC 260 D A', credits: '3.00', instructor: 'Robert Fessler' },
+		],
+		
+			
+});
+	
+});
+
 // 404 page
 app.use(function(req, res, next){
 	res.status(404)
