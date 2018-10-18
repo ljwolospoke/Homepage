@@ -1,0 +1,52 @@
+<h2>Create your character<h2>
+<div class="formContainer">
+<form class="form-horizontal createCharacterForm" role="form"
+	action="process?form="createCharacter" method="POST">
+  <input type="hidden" name="_csrf" value="{{csrf}}">
+  <div class="form-group">
+	<label for="fieldUserName" class="col-sm-2 control-label">Name</label>
+	<div class="col-sm-4">
+		<input type="text" class="form-control"
+		id="fieldUserName" name="Username">
+	</div>
+</div>
+<div class="form-group">
+	<label for="fieldEmail" class="col-sm-2 control-label">Email</label>
+	<div class="col-sm-4">
+		<input type="email" class="form-control" required
+		  id="fieldEmail" name="email">
+	</div>
+</div>
+<div class="form-group">
+	<div class="col-sm-offset-2 col-sm-4">
+	  <button type="submit" class="btn btn-default">Create Character</button>
+	</div>
+  </div>
+</form>
+</div>
+  <script>
+        $(document).ready(function(){
+          $('.createCharacterForm').on('submit', function(evt){
+                evt.preventDefault();
+                var action = $(this).attr('action');
+                var $container = $(this).closest('.formContainer');
+                //console.log(JSON.stringify($(this).serialize(),));
+                $.ajax({
+                  url: action,
+                  type: 'POST',
+                  data: $(this).serialize(),
+                  success: function(data){
+                        if(data.success){
+                                $container.html('<h2>Thank you!');
+                        }else{
+                                $container.html('There was a problem.');
+                        }
+                },
+                error: function(){
+                  $container.html('There was a problem.');
+                }
+          });
+        });
+       });
+ </script>
+

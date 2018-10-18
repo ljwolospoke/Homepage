@@ -25,6 +25,22 @@ app.use(function(req, res, next){
 });
 
 app.use(express.static(__dirname + "/public"));
+app.use(require("body-parser").urlencoded({ extended: true }));
+
+app.get('/createCharacter-ajax', function(req, res){
+	res.render('createCharacter-ajax', {csrf: 'CSRF token goes here' });
+});
+
+app.post('/process', function(req, res){
+   if (req.xhr || req.accepts('json,html')==='json'){
+	res.send({ success: true });
+	console.log('Form (form querystring): ' + req.query.form);
+	console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+	console.log('UserName (from visible form field): ' + req.body.userName);
+	console.log('Email (from visible form field): ' + req.body.email);
+	//res.redirect(303, '/thank-you');
+    }
+});
 
 app.get('/', function(req, res){
 	res.render('home');
