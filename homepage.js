@@ -36,7 +36,7 @@ app.post('/process', function(req, res){
 	res.send({ success: true });
 	console.log('Form (form querystring): ' + req.query.form);
 	console.log('CSRF token (from hidden form field): ' + req.body._csrf);
-	console.log('UserName (from visible form field): ' + req.body.userName);
+	console.log('UserName (from visible form field): ' + req.body.UserName);
 	console.log('Email (from visible form field): ' + req.body.email);
 	//res.redirect(303, '/thank-you');
     }
